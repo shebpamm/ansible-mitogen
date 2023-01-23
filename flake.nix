@@ -14,8 +14,8 @@
       name = "ansible-mitogen";
       srcs = [
         (builtins.fetchTarball {
-          url = "https://files.pythonhosted.org/packages/source/m/mitogen/mitogen-0.2.9.tar.gz";
-          sha256 = "1pzrc39mv363b3fcr2y2zhx3zx9l49azz65sl1j4skf4h4fhdj08";
+          url = "https://github.com/mitogen-hq/mitogen/archive/refs/tags/v0.2.10.tar.gz";
+          sha256 = "110ppgvmnz7ykdx47x33c0rb7zq3fkrw6g699c4vqa28mn00qp28";
           name = "mitogen";
         })
         self
