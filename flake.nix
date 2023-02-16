@@ -10,7 +10,7 @@
       let
         pkgs = import nixpkgs-stable { inherit system; };
       in
-      {
+      rec {
         defaultPackage = pkgs.stdenv.mkDerivation
           {
             name = "ansible-mitogen";
@@ -27,6 +27,12 @@
 
             installPhase = "mkdir -p $out; cp -r ./ansible_mitogen $out; sed s#install#$out#g ../source/ansible.tmpl > $out/ansible.cfg";
           };
+
+        wrapMitogen = (ansible:
+          ansible.overridePythonAttrs (old: {
+            makeWrapperArgs = [ "--set ANSIBLE_CONFIG ${defaultPackage.outPath}/ansible.cfg" ];
+          })
+        );
       }
     );
 }
